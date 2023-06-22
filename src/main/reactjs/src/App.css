@@ -1,15 +1,22 @@
+body {
+}
 .App {
   text-align: center;
 }
 
 .App-logo {
-  height: 40vmin;
+  height: 20vmin;
+  /*height: 100vh;*/
   pointer-events: none;
 }
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
+  }
+
+  body {
+    animation: backimg infinite 2s steps(1, start);
   }
 }
 
@@ -37,3 +44,16 @@
     scale: 2;
   }
 }
+
+@keyframes backimg {
+  0% {
+    background: url("image/shinyhaed.png");
+  }
+  50% {
+    background: url("image/bombberjoo.png");
+  }
+  100% {
+    background: url("image/bombberjoobg.png");
+  }
+}
+
