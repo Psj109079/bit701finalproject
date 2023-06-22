@@ -1,5 +1,5 @@
 import img from "./sexyhomin.gif";
-import bomb from "./image/bombberjoo.png";
+import bomb from "./bombberjoo.png";
 import './App.css';
 
 function App() {
