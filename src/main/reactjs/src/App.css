@@ -10,14 +10,10 @@ body {
   pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-
-  body {
-    animation: backimg infinite 2s steps(1, start);
-  }
+.joo {
+  position: absolute;
+  left: 0;
+  top: 50%;
 }
 
 .App-header {
@@ -35,13 +31,27 @@ body {
   color: #61dafb;
 }
 
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+
+  body {
+    animation: backimg infinite 2s steps(1, start);
+  }
+
+  .joo {
+    animation: jooinout infinite 5s linear;
+  }
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
   }
   to {
     transform: rotate(360deg);
-    scale: 2;
+    scale: 3;
   }
 }
 
@@ -56,4 +66,23 @@ body {
     background: url("image/bombberjoobg.png");
   }
 }
+
+@keyframes jooinout {
+  0% {
+    transform: rotate(90deg) translateY(30vmin);
+  }
+  25% {
+    transform: rotate(90deg) translateY(5vmin);
+    animation-timing-function: steps(1);
+    animation-duration: 2.5s;
+  }
+  50%{
+    transform: rotate(90deg) translateY(5vmin);
+  }
+  100%{
+    transform: rotate(90deg) translateY(30vmin);
+  }
+}
+
+
 
