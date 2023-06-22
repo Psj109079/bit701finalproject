@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import img from "./sexyhomin.gif";
 import './App.css';
 
