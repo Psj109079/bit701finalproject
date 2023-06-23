@@ -15,5 +15,4 @@ public interface MemberMapper {
 	public int getLogin(Map<String, String> map);
 	public String getName(String myid);
 	public void deleteMember(int num);
-	
 }
