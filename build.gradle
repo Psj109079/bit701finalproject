@@ -29,6 +29,8 @@ dependencies {
 	//implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.3.1'
+	implementation group: 'io.awspring.cloud', name: 'spring-cloud-starter-aws', version: '2.4.4'
+	implementation group: 'com.amazonaws', name: 'aws-java-sdk-s3', version: '1.12.488'
 	compileOnly 'org.projectlombok:lombok'
 	runtimeOnly 'com.mysql:mysql-connector-j'
 	annotationProcessor 'org.projectlombok:lombok'
@@ -43,11 +45,11 @@ tasks.named('test') {
 // 지정된 버전의 node를 다운로드하게 만드는 설정
 // $ gradle npmSetup 을 실행하여 node 프로그램을 설치한다.
 
-node {
-   version = '18.16.0'
-   npmVersion = '9.5.1'
-   download = true
-}
+//node {
+//   version = '18.16.0'
+//   npmVersion = '9.5.1'
+//   download = true
+//}
 
 task appNpmInstall(type: NpmTask) {
   dependsOn "npmSetup"

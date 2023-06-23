@@ -56,6 +56,9 @@ body {
   top: 50%;
 }
 
+.zero {
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -82,6 +85,11 @@ body {
 
   .joo {
     animation: jooinout infinite 5s linear;
+  }
+
+  .zero {
+    animation: xMove infinite 1s linear;
+    margin: 70px 0 70px 0;
   }
 }
 
@@ -124,5 +132,27 @@ body {
   }
 }
 
+@keyframes xMove {
+  0% {
+    transform: translateX(15vmin) scale(1.5);
+    opacity: 1;
+  }
+  25%{
+    transform: translateX(1vmin) scale(1);
+    opacity: 0.5;
+  }
+  50%{
+    transform: translateX(-15vmin) scale(1.5);
+    opacity: 1;
+  }
+  75%{
+    transform: translateX(1vmin) scale(1);
+    opacity: 0.5;
+  }
+  100%{
+    transform: translateX(15vmin) scale(1.5);
+    opacity: 1;
+  }
+}
 
 
