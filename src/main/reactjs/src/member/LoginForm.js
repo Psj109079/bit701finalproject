@@ -17,7 +17,9 @@ function LoginForm(props) {
                 if(res.data.success === "yes") {
                     /* localStorage: 직접 지우기 전에는 브라우저에 남아있음
                        sessionStorage: 브라우저 닫으면 지워짐 */
-                    sessionStorage.loginok = "yes";
+                    sessionStorage.token = res.data.token;
+                    console.log("data" + res.data.token);
+                    // sessionStorage.loginok = "yes";
                     sessionStorage.myname = res.data.myname;
                     sessionStorage.myid = myid;
                     navi("/");

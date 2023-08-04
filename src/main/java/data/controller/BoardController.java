@@ -18,11 +18,13 @@ import org.springframework.web.multipart.MultipartFile;
 
 import data.dto.BoardDto;
 import data.service.BoardService;
+import lombok.extern.slf4j.Slf4j;
 import naver.cloud.NcpObjectStorageService;
 
 @RestController
 @CrossOrigin
 @RequestMapping("/board")
+@Slf4j
 public class BoardController {
 	
 	@Autowired
@@ -39,6 +41,7 @@ public class BoardController {
 	
 	@PostMapping("/upload")
 	public String photoUpload(MultipartFile upload) {
+		log.info("file -> {}",upload);
 		if(photo != null) {
 			// 이전 사진 삭제
 			storageService.deleteFile(bucketName, "board", photo);

@@ -25,8 +25,26 @@ function BoardList(props) {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [currentPage]); // currentPage 가 변경될때마다 호출
 
+    // warning 해결법 위에 주석도 가능하지만 일시적 해결법임
+    // const selectData=useCallback(()=>{
+    //     const url=`/board/detail?num=${num}`;
+    //     Axios.get(url)
+    //         .then(res=>{
+    //             setDto(res.data);
+    //         })
+    // },[num])
+    //
+    // useEffect(()=>{
+    //     selectData();
+    // },[selectData]);
     const onWriteButtonEvent = () => {
-        if(sessionStorage.loginok == null || sessionStorage.loginok === "no" || sessionStorage.loginok === undefined) {
+        // if(sessionStorage.loginok == null || sessionStorage.loginok === "no" || sessionStorage.loginok === undefined) {
+        //     alert("먼저 로그인을 해주세요");
+        //     navi("/login");
+        // } else {
+        //     navi("/board/form");
+        // }
+        if(sessionStorage.token == null) {
             alert("먼저 로그인을 해주세요");
             navi("/login");
         } else {

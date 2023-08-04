@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan({"data.*", "naver.cloud"})
+@ComponentScan({"data.*", "naver.cloud", "jwt.setting"})
 @MapperScan({"data.mapper"})
 public class SpringReactProjectApplication {
 

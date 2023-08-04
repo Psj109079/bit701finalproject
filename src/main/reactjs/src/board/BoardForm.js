@@ -27,6 +27,7 @@ function BoardForm(props) {
     const onUploadEvent = (e) => {
         const uploadFile = new FormData();
         uploadFile.append("upload", e.target.files[0]);
+        console.log(e.target.files[0]);
         Axios({
             method: "post",
             url: "/board/upload",

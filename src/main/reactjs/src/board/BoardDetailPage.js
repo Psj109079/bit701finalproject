@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {useNavigate, useParams} from "react-router-dom";
 import Axios from "axios";
 import "../App.css"
@@ -13,18 +13,41 @@ function BoardDetailPage(props) {
     const loginok = sessionStorage.loginok;
     const navi = useNavigate();
 
-    const getData = () => {
+    // const getData = () => {
+    //     const url = "/board/detail?num=" + num;
+    //     // Axios.get(url)
+    //     //     .then(res => {
+    //     //         setData(res.data);
+    //     //     })
+    //     Axios({
+    //         type: "get",
+    //         url,
+    //         headers: {Authorization: `Bearer ${sessionStorage.token}`}
+    //     }). then(res => {
+    //         setData(res.data);
+    //     })
+    // }
+
+    const selectData = useCallback(() => {
         const url = "/board/detail?num=" + num;
-        Axios.get(url)
-            .then(res => {
-                setData(res.data);
-            })
-    }
+        Axios({
+            type: "get",
+            url,
+            headers: {Authorization: `Bearer ${sessionStorage.token}`}
+        }).then(res => {
+            setData(res.data);
+        })
+    },[num])
 
     useEffect(() => {
-        getData();
+        if(sessionStorage.token == null) {
+            alert("게시판 내용은 회원만 확인 가능합니다 \n먼저 로그인을 해주세요");
+            navi("/login");
+            return;
+        }
+        selectData();
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [selectData]);
     
     const deleteData = () => {
         let c = window.confirm("삭제하려면 [확인]을 눌러주세요");
@@ -41,7 +64,7 @@ function BoardDetailPage(props) {
     return (
         <div style={{width: "900px", margin: "0 auto 0 auto"}}>
             <img alt="" className="joo" src={joo}/>
-            <span style={{display: "block", fontSize: "35px", fontWeight: "bold"}}>{data.myid}</span>
+            <span style={{display: "block", fontSize: "35px", fontWeight: "bold"}}>{data.myid && data.myid.substring(0, 3) + "*".repeat(3)}</span>
             <div style={{margin: "10px 15px 40px 15px", fontSize: "20px"}}>
                 <span style={{margin: "0 15px 0 15px"}}>{data.myname}</span>
                 <span style={{margin: "0 15px 0 15px"}}>{data.subject}</span>

@@ -3,11 +3,11 @@ import "../App.css";
 import {NavLink, useNavigate} from "react-router-dom";
 
 function Menu(props) {
-    let login = sessionStorage.loginok;
     let name = sessionStorage.myname + "(" + sessionStorage.myid + ")";
     const navi = useNavigate();
     const inout = () => {
-        sessionStorage.loginok = "no";
+        sessionStorage.removeItem("toknen");
+        // sessionStorage.loginok = "no";
         sessionStorage.myname = "";
         sessionStorage.myid = "";
         navi("/");
@@ -19,6 +19,15 @@ function Menu(props) {
                 <NavLink to={"/"}>Home</NavLink>
             </li>
             <li>
+                <NavLink to={"/reducer1"}>Reducer1</NavLink>
+            </li>
+            <li>
+                <NavLink to={"/reducer2"}>Reducer2</NavLink>
+            </li>
+            <li>
+                <NavLink to={"/callback"}>callback</NavLink>
+            </li>
+            <li>
                 <NavLink to={"/member/form"}>회원가입</NavLink>
             </li>
             <li>
@@ -27,7 +36,7 @@ function Menu(props) {
             <li>
                 <NavLink to={"/board/list/1"}>게시판</NavLink>
             </li>
-            {login === null || login === "no" || login === undefined ?
+            {sessionStorage.token == null ?
                 <li>
                     <NavLink to={"/login"}>로그인</NavLink>
                 </li> :

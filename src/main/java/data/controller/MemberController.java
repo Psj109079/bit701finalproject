@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import data.dto.MemberDto;
 import data.service.MemberService;
+import jwt.setting.JwtTokenProvider;
+import jwt.setting.UserAuthentication;
 import lombok.AllArgsConstructor;
 
 @RestController
@@ -57,14 +60,21 @@ public class MemberController {
 	public Map<String, String> login(String myid, String mypass) {
 		System.out.println("login >> " + myid + " " + mypass);
 		int n = memberService.getLogin(myid, mypass);
+		
+		Map<String, String> map = new HashMap<>();
 //		성공시 가입한 이름도 같이 보냄
 		String myname = "";
 		
 		if(n == 1) {
 			myname = memberService.getName(myid);
+			
+			Authentication authentication = new UserAuthentication(myid, null, null);
+			String token = JwtTokenProvider.generateToken(authentication, myid);
+			System.out.println("token: " + token);
+			map.put("token", token);
+			map.put("success", n == 1 ? "yes" : "no");
 		}
-		Map<String, String> map = new HashMap<>();
-		map.put("success", n == 1 ? "yes" : "no");
+		
 		map.put("myname", myname);
 		return map;
 	}
